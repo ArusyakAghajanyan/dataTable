@@ -55,56 +55,7 @@ const data = [
     name: 'Mark',
     age: 5,
 },
-{
-    id: 11,
-    name: 'Vaik',
-    age: 11,
-},
-{
-    id: 12,
-    name: 'Arno',
-    age: 7,
-},
-{
-    id: 13,
-    name: 'Mark',
-    age: 5,
-},
-{
-    id: 14,
-    name: 'Vaik',
-    age: 11,
-},
-{
-    id: 15,
-    name: 'Arno',
-    age: 7,
-},
-{
-    id: 16,
-    name: 'Mark',
-    age: 5,
-},
-{
-    id: 17,
-    name: 'Vaik',
-    age: 11,
-},
-{
-    id: 18,
-    name: 'Arno',
-    age: 7,
-},
-{
-    id: 19,
-    name: 'Mark',
-    age: 5,
-},
-{
-    id: 20,
-    name: 'Mark',
-    age: 5,
-}
+
 ];
 const dataTable = new DataTable(columns,data);
 dataTable.createTable();

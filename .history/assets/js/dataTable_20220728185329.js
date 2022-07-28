@@ -90,8 +90,8 @@ class DataTable {
            console.log(this.dataCount, this.forRender);
            let pageNumber = 1;
            this.$tpage.remove();
-           this.createPagination();
-           
+           this.createTfooter();
+           this.pagination(pageNumber);
        });
     }
   }

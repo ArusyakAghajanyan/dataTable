@@ -7,14 +7,13 @@ class DataTable {
     createTable() {
       const dataCount = $select.value;;
       this.dataCount = dataCount;
-      console.log(this.dataCount);
       const $table = document.createElement('table');
       this.$table = $table;
       const $dataTableContainer = document.querySelector('.data-table-container');
       $dataTableContainer.appendChild($table);
       this.createThead();
       this.createTbody();     
-      this.renderData(this.dataCount);
+      this.renderData(dataCount);
       this.createPagination();  
       this.createPageSelect();
     }
@@ -38,23 +37,24 @@ class DataTable {
     }
   
     renderData(dataCount, rData) {
-      for (let i = 0; i < dataCount; i++){
+      if (!rData) rData = this.data;
+      rData.every((item, index) => {
+        if(index === dataCount) return;
         const $tr = document.createElement('tr');
-
-        for (const key in rData[i]){
+        for (const key in item){
             const $td = document.createElement('td');
-            $td.innerHTML = rData[i][key];
+            $td.innerHTML = item[key];
             $tr.appendChild($td);
         }
-
         this.$tbody.appendChild($tr);
-    }
+        return $tr;
+    });
     }
     createPagination(){
         const $tpage = document.createElement('tr');
         const $td = document.createElement('td');
         const attr = document.createAttribute("colspan"); 
-        const per = Math.ceil(this.data.length / this.dataCount);    
+        const per = Math.ceil(this.data.length / this.dataCount)    
         attr.value = "3";
         $td.setAttributeNode(attr);
         for (let btnCount = 1; btnCount <= per; btnCount++){
@@ -86,12 +86,9 @@ class DataTable {
         });
         
        $select.addEventListener('change', (e) => {
-           this.dataCount = e.target.value;
-           console.log(this.dataCount, this.forRender);
-           let pageNumber = 1;
-           this.$tpage.remove();
-           this.createPagination();
-           
+           e.target.value;
+           this.perPager = e.target.value;
+           console.log(e.target.value)
        });
     }
   }

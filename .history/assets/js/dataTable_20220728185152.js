@@ -86,12 +86,9 @@ class DataTable {
         });
         
        $select.addEventListener('change', (e) => {
-           this.dataCount = e.target.value;
-           console.log(this.dataCount, this.forRender);
-           let pageNumber = 1;
-           this.$tpage.remove();
-           this.createPagination();
-           
+        this.dataCount = e.target.value;
+           this.perPager = e.target.value;
+           console.log(e.target.value)
        });
     }
   }

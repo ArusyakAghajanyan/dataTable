@@ -91,7 +91,7 @@ class DataTable {
            let pageNumber = 1;
            this.$tpage.remove();
            this.createPagination();
-           
+           this.pagination(pageNumber);
        });
     }
   }

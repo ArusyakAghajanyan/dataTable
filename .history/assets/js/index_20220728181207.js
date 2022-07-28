@@ -86,22 +86,22 @@ const data = [
     age: 5,
 },
 {
-    id: 17,
+    id: 7,
     name: 'Vaik',
     age: 11,
 },
 {
-    id: 18,
+    id: 8,
     name: 'Arno',
     age: 7,
 },
 {
-    id: 19,
+    id: 9,
     name: 'Mark',
     age: 5,
 },
 {
-    id: 20,
+    id: 10,
     name: 'Mark',
     age: 5,
 }

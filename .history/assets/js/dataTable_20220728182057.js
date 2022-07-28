@@ -54,7 +54,7 @@ class DataTable {
         const $tpage = document.createElement('tr');
         const $td = document.createElement('td');
         const attr = document.createAttribute("colspan"); 
-        const per = Math.ceil(this.data.length / this.dataCount);    
+        const per = Math.ceil(this.data.length / this.dataCount)    
         attr.value = "3";
         $td.setAttributeNode(attr);
         for (let btnCount = 1; btnCount <= per; btnCount++){
@@ -86,12 +86,9 @@ class DataTable {
         });
         
        $select.addEventListener('change', (e) => {
-           this.dataCount = e.target.value;
-           console.log(this.dataCount, this.forRender);
-           let pageNumber = 1;
-           this.$tpage.remove();
-           this.createPagination();
-           
+           e.target.value;
+           this.perPager = e.target.value;
+           console.log(e.target.value)
        });
     }
   }
