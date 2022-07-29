@@ -1,9 +1,9 @@
 class DataTable {
     constructor(columns = [], data = [], {
       dataCount,
-      rowClassName='test', 
-      cellClassName='test',
-      tableClassName='test',
+      rowClassName='', 
+      cellClassName='',
+      tableClassName='',
       }) {
       this.columns = columns;
       this.data = data;
@@ -33,9 +33,9 @@ class DataTable {
     }
   
     createThead() {
-      const $thead = document.createElement('thead');
+      const $thead = document.createElement('thead');//??????
       const $tr = document.createElement('tr');  
-      $tr.classList.add(this.rowClassName);
+      $tr.classList.add($this.rowClassName);
       this.columns.forEach((column) => {
         const $th = document.createElement('th');
         $th.innerHTML = column;
@@ -56,7 +56,6 @@ class DataTable {
         const $tr = document.createElement('tr');
         for (const key in rData[i]){
             const $td = document.createElement('td');
-            $td.classList.add(this.cellClassName);
             $td.innerHTML = rData[i][key];
             $tr.appendChild($td);
         }

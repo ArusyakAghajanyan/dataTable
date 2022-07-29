@@ -1,25 +1,14 @@
 class DataTable {
-    constructor(columns = [], data = [], {
-      dataCount,
-      rowClassName='test', 
-      cellClassName='test',
-      tableClassName='test',
-      }) {
+    constructor(columns = [], data = [], {dataCount}) {
       this.columns = columns;
       this.data = data;
-      this.dataCount = dataCount;
-
-      this.rowClassName = rowClassName;
-      this.cellClassName = cellClassName;
-      this.tableClassName = tableClassName
+      this.
     }
   
-    createTable($dataTableContainer) {  
-      console.log(this.dataCount)      
+    createTable() {        
       const $table = document.createElement('table');
-      $table.classList.add(this.tableClassName);
       this.$table = $table;      
-      this.$dataTableContainer = $dataTableContainer;
+      const $dataTableContainer = document.querySelector('.data-table-container');
       $dataTableContainer.appendChild($table);
       this.createThead();
       this.createTbody();
@@ -35,7 +24,6 @@ class DataTable {
     createThead() {
       const $thead = document.createElement('thead');
       const $tr = document.createElement('tr');  
-      $tr.classList.add(this.rowClassName);
       this.columns.forEach((column) => {
         const $th = document.createElement('th');
         $th.innerHTML = column;
@@ -56,7 +44,6 @@ class DataTable {
         const $tr = document.createElement('tr');
         for (const key in rData[i]){
             const $td = document.createElement('td');
-            $td.classList.add(this.cellClassName);
             $td.innerHTML = rData[i][key];
             $tr.appendChild($td);
         }
@@ -65,7 +52,6 @@ class DataTable {
     }
     createPagination(){
         const $tpage = document.createElement('tr');
-        this.$tpage = $tpage;
         const $td = document.createElement('td');
         const attr = document.createAttribute("colspan"); 
         const per = Math.ceil(this.data.length / this.dataCount);    
@@ -105,14 +91,7 @@ class DataTable {
            console.log(this.dataCount, this.forRender);
            let pageNumber = 1;
            this.$tpage.remove();
-           this.createPagination();
-           this.$tbody.innerHTML = '';         
-           let start = (pageNumber - 1) * this.dataCount;
-           let end = start + this.dataCount;
-           let forRender = this.data.slice(start, end);
-           this.forRender = forRender;
-           this.renderData(this.dataCount, this.forRender); 
-                   
+           this.createPagination();           
        });
     }
   }

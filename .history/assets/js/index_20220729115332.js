@@ -107,13 +107,11 @@ const data = [
 }
 ];
 const options = {
-    dataCount: 5,
+    data
 }
+const dataTable = new DataTable(columns,data);
+dataTable.createTable();
 
-
-const dataTable = new DataTable(columns,data,options);
-const $dataTableContainer = document.querySelector('.data-table-container');
-dataTable.createTable($dataTableContainer);
 // Element.prototype.dataTable = function(){
 
 // };

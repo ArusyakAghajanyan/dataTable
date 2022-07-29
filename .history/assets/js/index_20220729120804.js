@@ -112,8 +112,9 @@ const options = {
 
 
 const dataTable = new DataTable(columns,data,options);
+
 const $dataTableContainer = document.querySelector('.data-table-container');
-dataTable.createTable($dataTableContainer);
+dataTable.createTable();
 // Element.prototype.dataTable = function(){
 
 // };

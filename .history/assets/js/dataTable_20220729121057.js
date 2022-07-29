@@ -1,23 +1,14 @@
 class DataTable {
     constructor(columns = [], data = [], {
-      dataCount,
-      rowClassName='test', 
-      cellClassName='test',
-      tableClassName='test',
-      }) {
+      dataCount, rowClassName=''}, cellClassName='') {
       this.columns = columns;
       this.data = data;
       this.dataCount = dataCount;
-
-      this.rowClassName = rowClassName;
-      this.cellClassName = cellClassName;
-      this.tableClassName = tableClassName
     }
   
     createTable($dataTableContainer) {  
       console.log(this.dataCount)      
       const $table = document.createElement('table');
-      $table.classList.add(this.tableClassName);
       this.$table = $table;      
       this.$dataTableContainer = $dataTableContainer;
       $dataTableContainer.appendChild($table);
@@ -35,7 +26,6 @@ class DataTable {
     createThead() {
       const $thead = document.createElement('thead');
       const $tr = document.createElement('tr');  
-      $tr.classList.add(this.rowClassName);
       this.columns.forEach((column) => {
         const $th = document.createElement('th');
         $th.innerHTML = column;
@@ -56,7 +46,6 @@ class DataTable {
         const $tr = document.createElement('tr');
         for (const key in rData[i]){
             const $td = document.createElement('td');
-            $td.classList.add(this.cellClassName);
             $td.innerHTML = rData[i][key];
             $tr.appendChild($td);
         }
