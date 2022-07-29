@@ -1,7 +1,10 @@
 const obj =  {
-    obj1: { a: 1, b: 2 },
-    number: 5,
-    array: [1, [2, 3], 4],
+    obj1: { 
+        a: 4, 
+        b: 9 
+    },
+    number: 10,
+    array: [1, 4, [2, 3]],
     null: null,
     func: () => {
         console.log("this is deep copy!");
@@ -9,13 +12,11 @@ const obj =  {
   };
 
 function deepCopy(object) {
-    let newObj = {}; // էս էն օբյեկտն ա որ վերջում պետք ա վերադարձնի, որպես քոփի
-
-    if (typeof object !== 'object' || object == null) { //ստեղ ստուգում ա որ եթե օբ․ չի հենց իրան տա
+    let newObj = {}; 
+    if (typeof object !== 'object' || object == null) {
         return object;
     }
-
-    newObj = Array.isArray(object) ? [] : {}; //ու եթե վերևի պայմանիմեջ չի մտնում գա էս տողի վրա, ստեղ էլ կստուգի, եթե զանգվածա [] սրա մեջ կսկսի լցնել, եթե օբ ա ՝ {} սրա
+    newObj = Array.isArray(object) ? [] : {}; եկսի լցնել, եթե օբ ա ՝ {} սրա
 
     for (let key in object) { // նու էդ ստուգումից հետո կմտնի մեջը կֆռա հերթով բոլորի վրայով
         newObj[key] = deepCopy(object[key]); // ամեն մեկի համար էլի հենց էս նույն ֆունկցիան կկանչի, քանի որ կարա ասենք էլի զանգվածի մեջ զանգված լինի, կամ օբ-ի մեջ օբ

@@ -1,5 +1,8 @@
 const obj =  {
-    obj1: { a: 1, b: 2 },
+    obj1: { 
+        a: 1, 
+        b: 2 
+    },
     number: 5,
     array: [1, [2, 3], 4],
     null: null,

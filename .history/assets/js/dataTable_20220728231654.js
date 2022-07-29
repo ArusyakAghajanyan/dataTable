@@ -11,13 +11,15 @@ class DataTable {
       $dataTableContainer.appendChild($table);
       this.createThead();
       this.createTbody();
+       
       this.createPageSelect(); 
       const $select = document.querySelector('.selectDataCount');
       const dataCount = $select.value;
       this.dataCount = dataCount;
       console.log(this.dataCount); 
       this.renderData(this.dataCount,this.data); 
-      this.createPagination();       
+      this.createPagination(); 
+      
     }
   
     createThead() {

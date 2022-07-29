@@ -4,20 +4,19 @@ class DataTable {
       this.data = data;
     }
   
-    createTable() {        
+    createTable() {
+      const dataCount = $select.value;;
+      this.dataCount = dataCount;
+      console.log(this.dataCount);
       const $table = document.createElement('table');
-      this.$table = $table;      
+      this.$table = $table;
       const $dataTableContainer = document.querySelector('.data-table-container');
       $dataTableContainer.appendChild($table);
       this.createThead();
-      this.createTbody();
-      this.createPageSelect(); 
-      const $select = document.querySelector('.selectDataCount');
-      const dataCount = $select.value;
-      this.dataCount = dataCount;
-      console.log(this.dataCount); 
-      this.renderData(this.dataCount,this.data); 
-      this.createPagination();       
+      this.createTbody();     
+      this.renderData(this.dataCount);
+      this.createPagination();  
+      this.createPageSelect();
     }
   
     createThead() {
@@ -41,11 +40,13 @@ class DataTable {
     renderData(dataCount, rData) {
       for (let i = 0; i < dataCount; i++){
         const $tr = document.createElement('tr');
+
         for (const key in rData[i]){
             const $td = document.createElement('td');
             $td.innerHTML = rData[i][key];
             $tr.appendChild($td);
         }
+
         this.$tbody.appendChild($tr);
     }
     }
@@ -64,8 +65,7 @@ class DataTable {
                 let start = (pageNumber - 1) * this.dataCount;
                 let end = start + this.dataCount;
                 let forRender = this.data.slice(start, end);
-                this.forRender = forRender;
-                this.renderData(this.dataCount, this.forRender);
+                this.renderData(this.dataCount, thi.forRender);
             });            
             $td.appendChild($btn);
             $btn.innerHTML = btnCount;
@@ -75,10 +75,10 @@ class DataTable {
     }
 
     createPageSelect(){
-        const $select = document.createElement("select");        
+        const $select = document.createElement("select")
         document.querySelector('.data-table-container').appendChild($select);
         const options = [5, 10, 20, 25];
-        $select.classList.add("selectDataCount");
+
         options.forEach((item) => {
             const $option = document.createElement('option');
             $option.innerHTML = item;
@@ -90,7 +90,8 @@ class DataTable {
            console.log(this.dataCount, this.forRender);
            let pageNumber = 1;
            this.$tpage.remove();
-           this.createPagination();           
+           this.createPagination();
+           
        });
     }
   }

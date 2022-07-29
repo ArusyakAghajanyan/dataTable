@@ -1,7 +1,10 @@
 const obj =  {
-    obj1: { a: 1, b: 2 },
-    number: 5,
-    array: [1, [2, 3], 4],
+    obj1: { 
+        a: 4, 
+        b: 9 
+    },
+    number: 10,
+    array: [1, 4, [2, 3]],
     null: null,
     func: () => {
         console.log("this is deep copy!");
@@ -9,7 +12,7 @@ const obj =  {
   };
 
 function deepCopy(object) {
-    let newObj = {}; // էս էն օբյեկտն ա որ վերջում պետք ա վերադարձնի, որպես քոփի
+    let newObj = {}; 
 
     if (typeof object !== 'object' || object == null) { //ստեղ ստուգում ա որ եթե օբ․ չի հենց իրան տա
         return object;

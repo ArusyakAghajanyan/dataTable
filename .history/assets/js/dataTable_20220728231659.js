@@ -17,7 +17,8 @@ class DataTable {
       this.dataCount = dataCount;
       console.log(this.dataCount); 
       this.renderData(this.dataCount,this.data); 
-      this.createPagination();       
+      this.createPagination(); 
+      
     }
   
     createThead() {

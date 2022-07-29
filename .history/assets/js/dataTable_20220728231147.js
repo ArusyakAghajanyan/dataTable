@@ -10,14 +10,17 @@ class DataTable {
       const $dataTableContainer = document.querySelector('.data-table-container');
       $dataTableContainer.appendChild($table);
       this.createThead();
-      this.createTbody();
+      this.createTbody();     
+     
+       
       this.createPageSelect(); 
       const $select = document.querySelector('.selectDataCount');
       const dataCount = $select.value;
       this.dataCount = dataCount;
       console.log(this.dataCount); 
       this.renderData(this.dataCount,this.data); 
-      this.createPagination();       
+      this.createPagination(); 
+      
     }
   
     createThead() {
@@ -41,11 +44,13 @@ class DataTable {
     renderData(dataCount, rData) {
       for (let i = 0; i < dataCount; i++){
         const $tr = document.createElement('tr');
+
         for (const key in rData[i]){
             const $td = document.createElement('td');
             $td.innerHTML = rData[i][key];
             $tr.appendChild($td);
         }
+
         this.$tbody.appendChild($tr);
     }
     }
@@ -90,7 +95,8 @@ class DataTable {
            console.log(this.dataCount, this.forRender);
            let pageNumber = 1;
            this.$tpage.remove();
-           this.createPagination();           
+           this.createPagination();
+           
        });
     }
   }

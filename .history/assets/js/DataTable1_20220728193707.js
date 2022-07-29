@@ -1,7 +1,10 @@
 const obj =  {
-    obj1: { a: 1, b: 2 },
-    number: 5,
-    array: [1, [2, 3], 4],
+    obj1: { 
+        a: 4, 
+        b: 9 
+    },
+    number: 10,
+    array: [1, , 4],
     null: null,
     func: () => {
         console.log("this is deep copy!");
