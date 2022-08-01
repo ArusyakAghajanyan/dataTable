@@ -76,7 +76,7 @@ class DataTable {
     });                 
     $thead.appendChild($tr);
     this.$table.appendChild($thead);
-    }         
+  }         
 
     createTbody() {
       const $tbody = document.createElement('tbody');

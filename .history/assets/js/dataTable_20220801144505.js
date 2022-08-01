@@ -44,7 +44,7 @@ class DataTable {
       let sortMethod = e.target.innerHTML.split(' ')[1];       
       if (columnName === 'id') {
         this.data = this.data.sort((dataA, dataB) => dataA.id - dataB.id);
-      } else if (columnName === 'name') {
+     } else if (columnName === 'name') {
         this.data = this.data.sort((dataA, dataB) => 
           {
             let a = dataA.name.toLowerCase();
@@ -58,26 +58,39 @@ class DataTable {
           }  
           if (columnName === 'id') {    
             this.data = this.data.sort((dataA, dataB) => dataB.id - dataA.id);
-          } else if (columnName === 'name') {
-            this.data = this.data.sort((dataA, dataB) => 
-          {
-            let a = dataA.name.toLowerCase();
-            let b = dataB.name.toLowerCase();              
-            if (b < a) return -1;
-            if (b > a) return 1;              
-            return 0;          
-          })                
-      } else if (columnName === 'age') {                       
-      this.data = this.data.sort((dataA, dataB) => dataB.age - dataA.age);                            
-    }   
-    this.$tbody.innerHTML = '';
-    this.renderData(this.dataCount, this.data);            
-    });  
-    });                 
-    $thead.appendChild($tr);
-    this.$table.appendChild($thead);
-    }         
+                  } else if (columnName === 'name') {
 
+                      this.data = this.data.sort((dataA, dataB) => 
+                      {
+                          let a = dataA.name.toLowerCase();
+                          let b = dataB.name.toLowerCase();
+
+                          if (b < a) return -1;
+                          
+                          if (b > a) return 1;
+
+                          return 0;
+                      })
+
+                  } else if (columnName === 'age') {
+
+                      this.data = this.data.sort((dataA, dataB) => dataB.age - dataA.age);
+
+                  }
+
+              
+
+              this.$tbody.innerHTML = '';
+              this.renderData(this.dataCount, this.data);
+          
+      });
+
+
+      }); 
+      $thead.appendChild($tr);
+      this.$table.appendChild($thead);
+    }
+  
     createTbody() {
       const $tbody = document.createElement('tbody');
       this.$tbody = $tbody;
@@ -144,9 +157,10 @@ class DataTable {
            let end = start + this.dataCount;
            let forRender = this.data.slice(start, end);
            this.forRender = forRender;
-           this.renderData(this.dataCount, this.forRender);                    
+           this.renderData(this.dataCount, this.forRender); 
+                   
        });
     }
   }
   
-export default DataTable;
+  export default DataTable;

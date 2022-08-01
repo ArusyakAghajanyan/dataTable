@@ -76,7 +76,7 @@ class DataTable {
     });                 
     $thead.appendChild($tr);
     this.$table.appendChild($thead);
-    }         
+  }         
 
     createTbody() {
       const $tbody = document.createElement('tbody');
@@ -144,9 +144,10 @@ class DataTable {
            let end = start + this.dataCount;
            let forRender = this.data.slice(start, end);
            this.forRender = forRender;
-           this.renderData(this.dataCount, this.forRender);                    
+           this.renderData(this.dataCount, this.forRender); 
+                   
        });
     }
   }
   
-export default DataTable;
+  export default DataTable;
