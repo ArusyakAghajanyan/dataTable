@@ -44,7 +44,8 @@ class DataTable {
       let columnName = e.target.innerText.split(' ')[0];
       if(sortMethod === true){
       sortMethod = false;
-      console.log(sortMethod);            
+      console.log(sort)
+            
       if (columnName === 'id') {
         this.data = this.data.sort((dataA, dataB) => dataA.id - dataB.id);
       } else if (columnName === 'name') {
@@ -58,9 +59,7 @@ class DataTable {
           })
           } else if (columnName === 'age') {
             this.data = this.data.sort((dataA, dataB) => dataA.age - dataB.age);
-          } 
-        } else if (sortMethod === false){
-          sortMethod = true; 
+          }  
           if (columnName === 'id') {    
             this.data = this.data.sort((dataA, dataB) => dataB.id - dataA.id);
           } else if (columnName === 'name') {
@@ -74,8 +73,7 @@ class DataTable {
           })                
       } else if (columnName === 'age') {                       
       this.data = this.data.sort((dataA, dataB) => dataB.age - dataA.age);                            
-    } 
-  }  
+    }   
     this.$tbody.innerHTML = '';
     this.renderData(this.dataCount, this.data);            
     });  

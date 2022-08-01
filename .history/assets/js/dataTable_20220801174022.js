@@ -59,8 +59,7 @@ class DataTable {
           } else if (columnName === 'age') {
             this.data = this.data.sort((dataA, dataB) => dataA.age - dataB.age);
           } 
-        } else if (sortMethod === false){
-          sortMethod = true; 
+        } else if (sortMethod === false) 
           if (columnName === 'id') {    
             this.data = this.data.sort((dataA, dataB) => dataB.id - dataA.id);
           } else if (columnName === 'name') {
@@ -74,8 +73,7 @@ class DataTable {
           })                
       } else if (columnName === 'age') {                       
       this.data = this.data.sort((dataA, dataB) => dataB.age - dataA.age);                            
-    } 
-  }  
+    }   
     this.$tbody.innerHTML = '';
     this.renderData(this.dataCount, this.data);            
     });  

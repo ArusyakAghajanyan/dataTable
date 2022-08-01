@@ -74,8 +74,7 @@ class DataTable {
           })                
       } else if (columnName === 'age') {                       
       this.data = this.data.sort((dataA, dataB) => dataB.age - dataA.age);                            
-    } 
-  }  
+    }   
     this.$tbody.innerHTML = '';
     this.renderData(this.dataCount, this.data);            
     });  
