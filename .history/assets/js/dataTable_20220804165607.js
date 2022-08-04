@@ -174,12 +174,11 @@ class DataTable {
   }
 
   createSearchForm() {
-  
     const $search = document.createElement('input');
     this.$dataTableContainer.appendChild($search);
     this.$search = $search;
     this.$search.addEventListener('input', (e) => {
-      const value = e.target.value.toLowerCase();//////
+      
       if (value == '') {
         this.searchedData = this.data;
      }
@@ -188,7 +187,7 @@ class DataTable {
     
         this.searchedData = this.data.filter((item) => {
           console.log(item)  
-          return item.name.toLowerCase().includes(value) || item.age === +value || item.id === +value;
+          return item.name.toLowerCase().includes(value) || item.age === +inputText || item.id === +inputText;
          
         });
         this.per = Math.ceil(this.searchedData.length / this.dataCount);

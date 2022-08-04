@@ -188,7 +188,7 @@ class DataTable {
     
         this.searchedData = this.data.filter((item) => {
           console.log(item)  
-          return item.name.toLowerCase().includes(value) || item.age === +value || item.id === +value;
+          return item.name.toLowerCase().includes(value) || item.age === value|| item.id === +inputText;
          
         });
         this.per = Math.ceil(this.searchedData.length / this.dataCount);

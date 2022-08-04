@@ -20,8 +20,6 @@ class DataTable {
   
   createTable($dataTableContainer) {
     this.$dataTableContainer = $dataTableContainer;
-    let per = Math.ceil(this.data.length / this.dataCount);
-    this.per = per;
 
     let searchedData = this.data;
     this.searchedData = searchedData;
@@ -82,7 +80,7 @@ class DataTable {
           if (columnName === 'id') {
             sortedData.sort((dataA, dataB) => dataB.id - dataA.id);
           } else if (columnName === 'name') {
-            sortedData.sort((dataA, dataB) => {
+            tsortedData.sort((dataA, dataB) => {
               let a = dataA.name.toLowerCase();
               let b = dataB.name.toLowerCase();
               if (b < a) return -1;
@@ -94,7 +92,7 @@ class DataTable {
           }
         }
         this.$tbody.innerHTML = '';
-        this.renderData(this.dataCount, sortedData);
+        this.renderData(this.dataCount, tsortedData);
       });
     });
     $thead.appendChild($tr);
@@ -122,12 +120,17 @@ class DataTable {
   createPagination() {
     const $tpage = document.createElement('tr');
     this.$tpage = $tpage;
-    const $td = document.createElement('td');   
+    const $td = document.createElement('td');
+    // const attr = document.createAttribute('colspan');
+    const per = Math.ceil(this.data.length / this.dataCount);
+    // attr.value = '3'; 
+    // $td.setAttributeNode(attr);
     $td.setAttribute("colspan",3);
-    for (let btnCount = 1; btnCount <= this.per; btnCount++) {
+    for (let btnCount = 1; btnCount <= per; btnCount++) {
       const $btn = document.createElement('button');
       $btn.addEventListener('click', () => {
-        this.$tbody.innerHTML = '';   
+
+        this.$tbody.innerHTML = '';       
 
         let pageNumber = $btn.innerText;
         let start = (pageNumber - 1) * this.dataCount;
@@ -162,40 +165,32 @@ class DataTable {
       this.$tpage.remove();
       this.createPagination();
       this.$tbody.innerHTML = '';
-      this.per = Math.ceil(this.searchedData.length == 0 ?  this.data.length: this.searchedData.length / this.dataCount);
-      
       let start = (pageNumber - 1) * this.dataCount;
       let end = start + this.dataCount;
       let forRender = this.data.slice(start, end);
       this.forRender = forRender;
       this.renderData(this.dataCount, this.forRender);
-      this.pagination(pageNumber, this.searchedData.length == 0 ?  this.data : this.searchedData);
     });
   }
 
   createSearchForm() {
-  
     const $search = document.createElement('input');
     this.$dataTableContainer.appendChild($search);
     this.$search = $search;
     this.$search.addEventListener('input', (e) => {
-      const value = e.target.value.toLowerCase();//////
-      if (value == '') {
-        this.searchedData = this.data;
-     }
-
      console.log(e.target.value)    
-    
-        this.searchedData = this.data.filter((item) => {
-          console.log(item)  
-          return item.name.toLowerCase().includes(value) || item.age === +value || item.id === +value;
-         
+     const value = e.target.value.toLowerCase();
+        const filteredData = this.data.filter((item) => {
+          console.log(item)        
+          if(item.name.toLowerCase().includes(value) || item.age === +e.target.value || item.id === +e.target.value) {
+          return true
+          } 
+          return false
         });
-        this.per = Math.ceil(this.searchedData.length / this.dataCount);
         this.$tpage.remove();
         this.$tbody.innerHTML = '';
         this.createPagination();
-        this.renderData(this.dataCount, this.searchedData)
+        this.renderData(this.dataCount, filteredData)
     })
   }
 }

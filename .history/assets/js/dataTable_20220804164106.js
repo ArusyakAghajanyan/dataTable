@@ -162,40 +162,34 @@ class DataTable {
       this.$tpage.remove();
       this.createPagination();
       this.$tbody.innerHTML = '';
-      this.per = Math.ceil(this.searchedData.length == 0 ?  this.data.length: this.searchedData.length / this.dataCount);
+      this.per = Math.ceil(this.searchedData.length == 0 ?  this.data.length: thissearchedData.length / this.dataCount);
       
       let start = (pageNumber - 1) * this.dataCount;
       let end = start + this.dataCount;
       let forRender = this.data.slice(start, end);
       this.forRender = forRender;
       this.renderData(this.dataCount, this.forRender);
-      this.pagination(pageNumber, this.searchedData.length == 0 ?  this.data : this.searchedData);
     });
   }
 
   createSearchForm() {
-  
     const $search = document.createElement('input');
     this.$dataTableContainer.appendChild($search);
     this.$search = $search;
     this.$search.addEventListener('input', (e) => {
-      const value = e.target.value.toLowerCase();//////
-      if (value == '') {
-        this.searchedData = this.data;
-     }
-
      console.log(e.target.value)    
-    
-        this.searchedData = this.data.filter((item) => {
-          console.log(item)  
-          return item.name.toLowerCase().includes(value) || item.age === +value || item.id === +value;
-         
+     const value = e.target.value.toLowerCase();
+        const filteredData = this.data.filter((item) => {
+          console.log(item)        
+          if(item.name.toLowerCase().includes(value) || item.age === +e.target.value || item.id === +e.target.value) {
+          return true
+          } 
+          return false
         });
-        this.per = Math.ceil(this.searchedData.length / this.dataCount);
         this.$tpage.remove();
         this.$tbody.innerHTML = '';
         this.createPagination();
-        this.renderData(this.dataCount, this.searchedData)
+        this.renderData(this.dataCount, filteredData)
     })
   }
 }
