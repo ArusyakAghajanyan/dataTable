@@ -50,7 +50,7 @@ class DataTable {
       $th.setAttribute('data-sort-order', 'asc');
       $tr.appendChild($th);
 
-      // let sortMethod = true;
+      let sortMethod = true;
       $th.addEventListener('click', (e) => {
         let sortMethod = $th.getAttribute('data-sort-order');
         let columnName = $th.getAttribute('data-sort');

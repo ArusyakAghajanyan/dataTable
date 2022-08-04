@@ -59,7 +59,7 @@ class DataTable {
         
         if (sortMethod === 'asc') {
           $th.setAttribute('data-sort-order', 'des');
-          $th.innerHTML = column.value;
+          $th.innerHTML = column;
           sortMethod = false;
           console.log(sortMethod);
           if (columnName === 'id') {

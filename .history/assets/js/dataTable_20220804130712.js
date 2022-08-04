@@ -42,24 +42,16 @@ class DataTable {
     const $thead = document.createElement('thead');
     const $tr = document.createElement('tr');
     $tr.classList.add(this.rowClassName);
-
     this.columns.forEach((column) => {
       const $th = document.createElement('th');
-      $th.innerHTML = column.value;
-      $th.setAttribute('data-sort', column.dataIndex);
-      $th.setAttribute('data-sort-order', 'asc');
+      $th.innerHTML = column;
       $tr.appendChild($th);
-
-      // let sortMethod = true;
+      let sortMethod = true;
       $th.addEventListener('click', (e) => {
-        let sortMethod = $th.getAttribute('data-sort-order');
-        let columnName = $th.getAttribute('data-sort');
-
+        let columnName = e.target.innerText.split(' ')[0];
         let sortedData = this.searchedData.length == 0 ? this.data : this.searchedData;
         
-        if (sortMethod === 'asc') {
-          $th.setAttribute('data-sort-order', 'des');
-          $th.innerHTML = column.value;
+        if (sortMethod === true) {
           sortMethod = false;
           console.log(sortMethod);
           if (columnName === 'id') {
@@ -88,11 +80,11 @@ class DataTable {
               return 0;
             });
           } else if (columnName === 'age') {
-            sortedData.sort((dataA, dataB) => dataB.age - dataA.age);
+            tempData.sort((dataA, dataB) => dataB.age - dataA.age);
           }
         }
         this.$tbody.innerHTML = '';
-        this.renderData(this.dataCount, tsortedData);
+        this.renderData(this.dataCount, tempData);
       });
     });
     $thead.appendChild($tr);
@@ -121,17 +113,14 @@ class DataTable {
     const $tpage = document.createElement('tr');
     this.$tpage = $tpage;
     const $td = document.createElement('td');
-    // const attr = document.createAttribute('colspan');
+    const attr = document.createAttribute('colspan');
     const per = Math.ceil(this.data.length / this.dataCount);
-    // attr.value = '3'; 
-    // $td.setAttributeNode(attr);
-    $td.setAttribute("colspan",3);
+    attr.value = '3'; //??????????
+    $td.setAttributeNode(attr);
     for (let btnCount = 1; btnCount <= per; btnCount++) {
       const $btn = document.createElement('button');
       $btn.addEventListener('click', () => {
-
-        this.$tbody.innerHTML = '';       
-
+        this.$tbody.innerHTML = '';
         let pageNumber = $btn.innerText;
         let start = (pageNumber - 1) * this.dataCount;
         let end = start + this.dataCount;
@@ -142,7 +131,6 @@ class DataTable {
       $td.appendChild($btn);
       $btn.innerHTML = btnCount;
       $tpage.appendChild($td);
-   
     }
     this.$table.appendChild($tpage);
   }

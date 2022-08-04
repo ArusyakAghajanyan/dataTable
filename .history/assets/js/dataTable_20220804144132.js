@@ -50,7 +50,7 @@ class DataTable {
       $th.setAttribute('data-sort-order', 'asc');
       $tr.appendChild($th);
 
-      // let sortMethod = true;
+      let sortMethod = true;
       $th.addEventListener('click', (e) => {
         let sortMethod = $th.getAttribute('data-sort-order');
         let columnName = $th.getAttribute('data-sort');
@@ -58,8 +58,6 @@ class DataTable {
         let sortedData = this.searchedData.length == 0 ? this.data : this.searchedData;
         
         if (sortMethod === 'asc') {
-          $th.setAttribute('data-sort-order', 'des');
-          $th.innerHTML = column.value;
           sortMethod = false;
           console.log(sortMethod);
           if (columnName === 'id') {

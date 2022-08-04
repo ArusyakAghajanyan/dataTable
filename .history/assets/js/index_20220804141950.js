@@ -2,20 +2,6 @@ import DataTable from './DataTable.js';
 
 // const columns = ['id', 'name', 'age'];
 
-const columnsObject = [
-    {
-        value: 'ID',
-        dataIndex: 'id',
-    },
-    {
-        value: 'Name',
-        dataIndex: 'name',
-    },
-    {
-        value: 'Age',
-        dataIndex: 'age',
-    },
-];
 
 
 const data = [
@@ -126,7 +112,7 @@ const options = {
 }
 
 
-const dataTable = new DataTable(columnsObject,data,options);
+const dataTable = new DataTable(columns,data,options);
 const $dataTableContainer = document.querySelector('.data-table-container');
 dataTable.createTable($dataTableContainer);
 // Element.prototype.dataTable = function(){

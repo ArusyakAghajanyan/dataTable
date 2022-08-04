@@ -19,16 +19,11 @@ class DataTable {
   }
   
   createTable($dataTableContainer) {
-    this.$dataTableContainer = $dataTableContainer;
-
-    let searchedData = this.data;
-    this.searchedData = searchedData;
-
-    this.createSearchForm();
     console.log(this.dataCount);
     const $table = document.createElement('table');
     $table.classList.add(this.tableClassName);
     this.$table = $table;
+    this.$dataTableContainer = $dataTableContainer;
     $dataTableContainer.appendChild($table);
 
     this.createThead();
@@ -42,30 +37,20 @@ class DataTable {
     const $thead = document.createElement('thead');
     const $tr = document.createElement('tr');
     $tr.classList.add(this.rowClassName);
-
     this.columns.forEach((column) => {
       const $th = document.createElement('th');
-      $th.innerHTML = column.value;
-      $th.setAttribute('data-sort', column.dataIndex);
-      $th.setAttribute('data-sort-order', 'asc');
+      $th.innerHTML = column;
       $tr.appendChild($th);
-
-      // let sortMethod = true;
+      let sortMethod = true;
       $th.addEventListener('click', (e) => {
-        let sortMethod = $th.getAttribute('data-sort-order');
-        let columnName = $th.getAttribute('data-sort');
-
-        let sortedData = this.searchedData.length == 0 ? this.data : this.searchedData;
-        
-        if (sortMethod === 'asc') {
-          $th.setAttribute('data-sort-order', 'des');
-          $th.innerHTML = column.value;
+        let columnName = e.target.innerText.split(' ')[0];
+        if (sortMethod === true) {
           sortMethod = false;
           console.log(sortMethod);
           if (columnName === 'id') {
-            sortedData.sort((dataA, dataB) => dataA.id - dataB.id);
+            this.data = this.data.sort((dataA, dataB) => dataA.id - dataB.id);
           } else if (columnName === 'name') {
-            sortedData.sort((dataA, dataB) => {
+            this.data = this.data.sort((dataA, dataB) => {
               let a = dataA.name.toLowerCase();
               let b = dataB.name.toLowerCase();
               if (a < b) return -1;
@@ -73,14 +58,14 @@ class DataTable {
               return 0;
             });
           } else if (columnName === 'age') {
-            sortedData.sort((dataA, dataB) => dataA.age - dataB.age);
+            this.data = this.data.sort((dataA, dataB) => dataA.age - dataB.age);
           }
         } else if (sortMethod === false) {
           sortMethod = true;
           if (columnName === 'id') {
-            sortedData.sort((dataA, dataB) => dataB.id - dataA.id);
+            this.data = this.data.sort((dataA, dataB) => dataB.id - dataA.id);
           } else if (columnName === 'name') {
-            tsortedData.sort((dataA, dataB) => {
+            this.data = this.data.sort((dataA, dataB) => {
               let a = dataA.name.toLowerCase();
               let b = dataB.name.toLowerCase();
               if (b < a) return -1;
@@ -88,11 +73,11 @@ class DataTable {
               return 0;
             });
           } else if (columnName === 'age') {
-            sortedData.sort((dataA, dataB) => dataB.age - dataA.age);
+            this.data = this.data.sort((dataA, dataB) => dataB.age - dataA.age);
           }
         }
         this.$tbody.innerHTML = '';
-        this.renderData(this.dataCount, tsortedData);
+        this.renderData(this.dataCount, this.data);
       });
     });
     $thead.appendChild($tr);
@@ -121,17 +106,14 @@ class DataTable {
     const $tpage = document.createElement('tr');
     this.$tpage = $tpage;
     const $td = document.createElement('td');
-    // const attr = document.createAttribute('colspan');
+    const attr = document.createAttribute('colspan');
     const per = Math.ceil(this.data.length / this.dataCount);
-    // attr.value = '3'; 
-    // $td.setAttributeNode(attr);
-    $td.setAttribute("colspan",3);
+    attr.value = '3'; //??????????
+    $td.setAttributeNode(attr);
     for (let btnCount = 1; btnCount <= per; btnCount++) {
       const $btn = document.createElement('button');
       $btn.addEventListener('click', () => {
-
-        this.$tbody.innerHTML = '';       
-
+        this.$tbody.innerHTML = '';
         let pageNumber = $btn.innerText;
         let start = (pageNumber - 1) * this.dataCount;
         let end = start + this.dataCount;
@@ -142,7 +124,6 @@ class DataTable {
       $td.appendChild($btn);
       $btn.innerHTML = btnCount;
       $tpage.appendChild($td);
-   
     }
     this.$table.appendChild($tpage);
   }
@@ -174,26 +155,10 @@ class DataTable {
   }
 
   createSearchForm() {
-    const $search = document.createElement('input');
+    const $search = document.createElement('search');
     this.$dataTableContainer.appendChild($search);
-    this.$search = $search;
-    this.$search.addEventListener('input', (e) => {
-     console.log(e.target.value)    
-     const value = e.target.value.toLowerCase();
-        const filteredData = this.data.filter((item) => {
-          console.log(item)        
-          if(item.name.toLowerCase().includes(value) || item.age === +e.target.value || item.id === +e.target.value) {
-          return true
-          } 
-          return false
-        });
-        this.$tpage.remove();
-        this.$tbody.innerHTML = '';
-        this.createPagination();
-        this.renderData(this.dataCount, filteredData)
-    })
+
   }
 }
 
 export default DataTable;
-
