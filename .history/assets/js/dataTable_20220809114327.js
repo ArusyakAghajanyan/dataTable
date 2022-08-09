@@ -212,9 +212,13 @@ class DataTable {
       let pageNumber = 1;
       this.$tpage.remove();
       this.createPagination();
-      this.pagination(pageNumber, this.searchedData == null || this.earchedData.length == 0 ? this.data : this.earchedData);
 
-      
+      this.pagination(
+        pageNumber,
+        this.searchedData == null || this.searchedData.length == 0
+          ? this.data
+          : this.searchedData
+      );
     });
   }
 

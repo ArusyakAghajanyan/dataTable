@@ -207,14 +207,32 @@ class DataTable {
 
     $select.addEventListener("change", (e) => {
       this.dataCount = e.target.value;
-      this.$tbody.innerHTML = '';
-      this.per = Math.ceil(this.searchedData == null || this.searchedData.length == 0 ? this.data.length/this.dataCount : this.searchedData.length / this.dataCount);
+      this.$tbody.innerHTML = "";
       let pageNumber = 1;
-      this.$tpage.remove();
-      this.createPagination();
-      this.pagination(pageNumber, this.searchedData == null || this.earchedData.length == 0 ? this.data : this.earchedData);
+      let start = (pageNumber - 1) * this.dataCount;
+      let end = start + this.dataCount;
+      let forRender =
+      this.searchedData == null this.searchedData.length !== 0
+          ? this.searchedData.slice(start, end)
+          : this.data.slice(start, end);
 
-      
+      this.forRender = forRender;
+      this.$tpage.remove();
+      console.log(this.dataCount, this.forRender);
+  
+      this.per = Math.ceil(
+        this.searchedData == null || this.searchedData.length == 0
+          ? this.data.length / this.dataCount
+          : this.searchedData.length / this.dataCount
+      );
+      this.createPagination();
+      this.renderData(this.dataCount, this.forRender);
+      this.pagination(
+        pageNumber,
+        this.searchedData == null || this.searchedData.length == 0
+          ? this.data
+          : this.searchedData
+      );
     });
   }
 
