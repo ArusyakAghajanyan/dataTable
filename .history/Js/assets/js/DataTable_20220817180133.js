@@ -253,31 +253,16 @@ console.log(this.selectedData);
         this.$tbody.innerHTML = '';
         this.$tpage.remove();
         this.createPagination();
-        this.pagination(!this.pageNumber ? 1 : this.pageNumber, this.searchedData == null || this.searchedData.length == 0 ? this.data : this.searchedData);
+        // this.renderData(
+        //   this.dataCount,
+        //   this.searchedData == null || this.searchedData.length == 0
+        //     ? this.data
+        //     : this.searchedData
+        // );
       });
-
-      this.$tdEdit.addEventListener('click', (e) => {
-        let editDataId = e.target.dataset.id;
-        console.log(editDataId);
-        let editName = '';
-        let editAge = '';
-        this.data.forEach((item) => {
-          console.log(editDataId);
-          if(item.id == editDataId){
-            editName = item.name;
-            editAge = item.age;
-          }
-        })
-        console.log(editName, editAge);
-        if(document.querySelector('form')){
-          return;
-        }
-        // this.addNewData(editName,editAge,editDataId);
-      })
       this.$tbody.appendChild($tr);
     }
   }
-
   createPagination() {
     const $tpage = document.createElement('tr');
     this.$tpage = $tpage;

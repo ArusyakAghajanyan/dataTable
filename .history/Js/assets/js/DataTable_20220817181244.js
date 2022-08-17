@@ -264,20 +264,13 @@ console.log(this.selectedData);
         this.data.forEach((item) => {
           console.log(editDataId);
           if(item.id == editDataId){
-            editName = item.name;
-            editAge = item.age;
+            editName = item.name
           }
         })
-        console.log(editName, editAge);
-        if(document.querySelector('form')){
-          return;
-        }
-        // this.addNewData(editName,editAge,editDataId);
       })
       this.$tbody.appendChild($tr);
     }
   }
-
   createPagination() {
     const $tpage = document.createElement('tr');
     this.$tpage = $tpage;

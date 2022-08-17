@@ -268,16 +268,11 @@ console.log(this.selectedData);
             editAge = item.age;
           }
         })
-        console.log(editName, editAge);
-        if(document.querySelector('form')){
-          return;
-        }
-        // this.addNewData(editName,editAge,editDataId);
+        
       })
       this.$tbody.appendChild($tr);
     }
   }
-
   createPagination() {
     const $tpage = document.createElement('tr');
     this.$tpage = $tpage;

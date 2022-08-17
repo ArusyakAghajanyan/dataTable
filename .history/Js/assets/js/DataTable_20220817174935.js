@@ -19,7 +19,7 @@ class DataTable {
     this.cellClassName = cellClassName;
     this.deleteClassName = deleteClassName;
     this.tableClassName = tableClassName;
-    this.editClassName = editClassName;
+    edit
   }
 
   createTable($dataTableContainer) {
@@ -88,7 +88,7 @@ console.log(this.selectedData);
     const $thDelete = document.createElement('th');
     $thDelete.innerHTML = 'Delete';
     $thDelete.setAttribute('data-delete', 'delete');
-    
+
     $thDelete.addEventListener('click', () => {
        this.data = this.data.filter((item) => {
         item.id = item.id + "";
@@ -97,10 +97,7 @@ console.log(this.selectedData);
         this.selectedData.length = 0;
        console.log(this.data);
     })
-    
-    const $thEdit = document.createElement('th');
-    $thEdit.innerHTML = 'Edit';
-    $thEdit.setAttribute('data-delete', 'edit');
+
    
 
     this.columns.forEach((column) => {
@@ -113,9 +110,8 @@ console.log(this.selectedData);
       
       $tr.appendChild($th);      
       $tr.appendChild($thDelete);
-      $tr.appendChild($thEdit);
            
-      $th.addEventListener('click', (e) => {
+      $th.addEventListener('click', () => {
         let sortMethod = $th.getAttribute('data-sort-order');
         let columnName = $th.getAttribute('data-sort');
 
@@ -198,7 +194,10 @@ console.log(this.selectedData);
         });
       }
       console.log(this.selectedData);
-      })         
+      })
+
+
+            
      
     }  
     
@@ -218,14 +217,6 @@ console.log(this.selectedData);
         this.$tdDelete.classList.add(this.deleteClassName);
         this.$tdDelete.setAttribute('data-id', rData[i].id);
         $tr.appendChild(this.$tdDelete);
-
-        const $tdEdit = document.createElement('td');
-        this.$tdEdit = $tdEdit;
-        this.$tdEdit.innerHTML = '✎';
-        this.$tdEdit.classList.add(this.editClassName);
-        this.$tdEdit.setAttribute('data-id', rData[i].id);
-        $tr.appendChild(this.$tdEdit);
-
       }
       this.$tdDelete.addEventListener('click', (e) => {
         let deletedData = e.target.dataset.id;
@@ -249,35 +240,19 @@ console.log(this.selectedData);
             : this.searchedData.length / this.dataCount
         );
 
-        
-        this.$tbody.innerHTML = '';
         this.$tpage.remove();
+        this.$tbody.innerHTML = '';
         this.createPagination();
-        this.pagination(!this.pageNumber ? 1 : this.pageNumber, this.searchedData == null || this.searchedData.length == 0 ? this.data : this.searchedData);
+        this.renderData(
+          this.dataCount,
+          this.searchedData == null || this.searchedData.length == 0
+            ? this.data
+            : this.searchedData
+        );
       });
-
-      this.$tdEdit.addEventListener('click', (e) => {
-        let editDataId = e.target.dataset.id;
-        console.log(editDataId);
-        let editName = '';
-        let editAge = '';
-        this.data.forEach((item) => {
-          console.log(editDataId);
-          if(item.id == editDataId){
-            editName = item.name;
-            editAge = item.age;
-          }
-        })
-        console.log(editName, editAge);
-        if(document.querySelector('form')){
-          return;
-        }
-        // this.addNewData(editName,editAge,editDataId);
-      })
       this.$tbody.appendChild($tr);
     }
   }
-
   createPagination() {
     const $tpage = document.createElement('tr');
     this.$tpage = $tpage;
