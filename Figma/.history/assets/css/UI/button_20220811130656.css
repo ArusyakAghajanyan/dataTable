@@ -1,0 +1,15 @@
+.base-button {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    padding: 18px 22px;
+    bord
+
+}
+.base-button-hover {
+    cursor: pointer;
+}
+.base-button--primary {
+    background-color: ;
+
+}

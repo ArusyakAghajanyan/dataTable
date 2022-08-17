@@ -1,0 +1,45 @@
+.intro {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.intro-content {
+ display: flex;
+ align-items: flex-start;
+ justify-content: space-between;
+}
+.intro__description {
+    width: 50%;
+}
+
+.intro__title {
+    font-size: 28px;
+    color: var(--primary);
+    margin-bottom: 29px;
+}
+.intro__subtitle {
+    font-size: 64px;
+    font-weight: 700;
+    color: var(--secondary);
+    margin: 31px;
+}
+.intro__details {
+    color: var(--secondary-light);
+}
+.intro__button {
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+}
+.intro__button-icon {
+    margin-left: 19px;
+}
+
+.intro__image__wrapper {
+
+}
+.intro__image {
+width: 100%;
+display: block;
+}

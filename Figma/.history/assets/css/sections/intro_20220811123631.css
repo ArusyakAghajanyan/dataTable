@@ -1,0 +1,14 @@
+.intro {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.intro-content {
+ display: flex;
+ align-items: flex-start;
+ justify-content: space-between;
+}
+.intro__description {
+    w
+}
