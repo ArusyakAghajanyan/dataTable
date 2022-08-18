@@ -1,0 +1,15 @@
+.header {
+ padding-top: 57px;
+}
+.header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+}
+
+.headerogo {
+font-size: 30px;
+font-weight: 700;
+color: var(--secondary);
+}

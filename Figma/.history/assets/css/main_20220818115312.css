@@ -1,0 +1,10 @@
+html, body {
+    font-family: 'Figtree', sans-serif;
+}
+.container {
+    width: 1130px;
+    margin: 0 auto;
+}
+.text-primary {
+    color: var(--p);
+}

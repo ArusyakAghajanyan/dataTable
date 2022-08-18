@@ -1,0 +1,26 @@
+.header {
+ position: absolute; 
+ width: 100%;  
+ padding-top: 57px;
+}
+.header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+}
+
+.header__logo {
+font-size: 30px;
+font-weight: 700;
+color: var(--secondary);
+}
+
+.header__menu {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    color: var(--secondary-light);
+}
+
+.hea
