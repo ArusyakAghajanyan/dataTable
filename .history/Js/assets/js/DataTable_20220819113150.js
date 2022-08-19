@@ -345,11 +345,12 @@ class DataTable {
   }
 
   createSearchForm() {
-    const $search = document.createElement("input");    
-    this.$dataTableContainer.appendChild($search);    
-    this.$search = $search;
-    this.$search.setAttribute('placeholder', "Search ...");
+    const $search = document.createElement("input");
+        this.$search.setAttribute('placeholder', "sjdhjshdjshdjshdhh")
 
+    this.$dataTableContainer.appendChild($search);
+    
+    this.$search = $search;
     this.$search.addEventListener("input", (e) => {
       const value = e.target.value.toLowerCase();
       if (value == "") {

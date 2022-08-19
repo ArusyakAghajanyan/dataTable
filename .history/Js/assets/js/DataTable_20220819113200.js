@@ -348,8 +348,7 @@ class DataTable {
     const $search = document.createElement("input");    
     this.$dataTableContainer.appendChild($search);    
     this.$search = $search;
-    this.$search.setAttribute('placeholder', "Search ...");
-
+    v
     this.$search.addEventListener("input", (e) => {
       const value = e.target.value.toLowerCase();
       if (value == "") {
